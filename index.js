@@ -23,7 +23,7 @@ app.use(limiter)
 db()
 
 app.use(cors({
-    origin:["http://localhost:3000"],
+    origin:["https://grocoreyfontend.onrender.com"],
    credentials:true
     
 }))
