@@ -27,7 +27,7 @@ app.use(cors({
    credentials:true
     
 }))
-
+ app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 app.get("/",(req,res)=>{
     
     res.sendStatus(200)
