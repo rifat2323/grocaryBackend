@@ -141,7 +141,7 @@ router.get('/getCartid',middleware,async(req,res)=>{
   const userInfo = await User.findOne({refreshToken:token})
     
       
-  return res.status(200).json({cart:userInfo.cart, })
+  return res.status(200).json({cart:userInfo.cart })
 })
 router.get('/refresh',middleware, async(req,res)=>{
   const token = req.token
