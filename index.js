@@ -6,7 +6,8 @@ const mongoose = require("mongoose")
 const db = require("./db/connectdb.js")
 const cors = require("cors")
 const{ rateLimit } = require('express-rate-limit')
-
+ const {CronJob} = require('cron')
+ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 
 const limiter = rateLimit({
@@ -38,6 +39,22 @@ app.get("/",(req,res)=>{
 app.use("/product", require("./router/product.js"))
 app.use("/user",require('./router/user.js'))
 
+new CronJob(
+    '*/30 * * * * *',
+    async function () {
+        try {
+            const response = await fetch('https://grocarybackend.onrender.com/');
+            const text = await response.text();
+            console.log('Pinged server:', text);
+        } catch (error) {
+            console.error('Error pinging server:', error);
+        }
+	}, // onTick
+	null, // onComplete
+	true,
+    'utc'
+
+)
 
 mongoose.connection.once("open",()=>{
     console.log("connected")
