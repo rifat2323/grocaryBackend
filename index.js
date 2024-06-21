@@ -24,7 +24,7 @@ app.use(limiter)
 db()
 
 app.use(cors({
-    origin:["https://grocoreyfontend.onrender.com"],
+    origin:["https://grocoreyfontends.onrender.com"],
    credentials:true
     
 }))
